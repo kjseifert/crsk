@@ -1,40 +1,20 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Listing Posts</h1>
+<div id="posts" class="transitions-enabled">
+  <% @posts.each do |post| %>
+    <div class="box panel panel-default">
+      <%= post.description %>
+      <div class="panel-body">
+      <%= post.link %>
+      <%= post.user.email if post.user %>
+      <%= link_to 'Show', post_path(post) %>
+      <% if post.user == current_user %>
+        <%= link_to 'Edit', edit_post_path(post) %>
+        <%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %>
+      <% end %>
+      </div>
+    </div>
+  <% end %>
+</div>
 
-<table>
-  <thead>
-    <tr>
-      <th>Description</th>
-      <th>Link</th>
-      <th>User email </th>
-      
-      <th colspan="3"></th>
-    </tr>
-  </thead>
 
-  <tbody>
-    <% @posts.each do |post| %>
-      <tr>
-        <td><%= post.description %></td>
-       
-        <td><%= post.link %></td>
-        
-        <td><%= post.user.email if post.user %></td>
-        <% if post.user == current_user %>
-          <%= link_to 'Edit', edit_post_path(post) %>
-          <%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %>
-        <% end %>
-        
-        <td><%= link_to 'Show', post %></td>
-        <td><%= link_to 'Edit', edit_post_path(post) %></td>
-        <td><%= link_to 'Delete', post, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-<% if user_signed_in?%>
-<%= link_to 'New Post', new_post_path %>
-<% end %>
