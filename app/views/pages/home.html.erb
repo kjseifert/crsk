@@ -3,11 +3,17 @@
 <div class="jumbotron center">
      	<h1>Welcome to ClassroomSidekick!</h1>
      <% if user_signed_in? %>
-          # do something
+          
+          <%= link_to 'Click here to see all your current requests', posts_path %>
+          
      <% else %>
        <p>
-         <%= link_to "Log in", new_user_session_path, class: "btn btn-default btn-lg" %>
-         <%= link_to "Sign up", new_user_registration_path, class: "btn btn-primary btn-lg" %>
+         <%= link_to "Teacher Log in", new_user_session_path, class: "btn btn-default btn-lg" %>
+         <%= link_to "Teacher Sign up", new_user_registration_path, class: "btn btn-primary btn-lg" %><p></p>
        </p>
+       
+       <p>Helping has never been so simple.  At ClassroomSidekick, teachers post small requests for items they need in their classroom.  Parents review the requests and help where they can.</p>
+       
+       <%= link_to "Parents, click here to view your teacher's request page.", posts_path %>
   <% end %>  
 </div>

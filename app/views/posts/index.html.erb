@@ -1,17 +1,34 @@
 <p id="notice"><%= notice %></p>
 
+
+
 <div id="posts" class="transitions-enabled">
   <% @posts.each do |post| %>
     <div class="box panel panel-default">
-      <%= post.description %>
+      <strong><%= post.description %></strong></br>
       <div class="panel-body">
       <%= post.link %>
-      <%= post.user.email if post.user %>
-      <%= link_to 'Show', post_path(post) %>
+      <%= post.user.email if post.user %></br><p></p>
+      <%= link_to "Commit to contribute", new_user_registration_path, class: "btn btn-default btn-sm" %>
+       </p>
+    <%= link_to 'Show', post_path(post) %>
       <% if post.user == current_user %>
-        <%= link_to 'Edit', edit_post_path(post) %>
-        <%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %>
+        <div class="actions">
+          <%= link_to edit_post_path(post) do %>
+              <span class="glyphicon glyphicon-edit"></span>
+              Edit
+            <% end %>
+            <%= link_to post, method: :delete, data: { confirm: 'Are you sure?' } do %>
+              <span class="glyphicon glyphicon-trash"></span>
+              Delete
+            <% end %>
+
+        
+        
+        
+ 
       <% end %>
+        </div>
       </div>
     </div>
   <% end %>
