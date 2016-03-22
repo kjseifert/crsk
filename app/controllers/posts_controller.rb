@@ -8,10 +8,21 @@ class PostsController < ApplicationController
  
   def index
     @posts = Post.all
+      if params[:search]
+        @posts = Post.search(params[:search]).order("created_at DESC")
+        else
+        @posts = Post.all.order('created_at DESC')
+      end
   end
 
  
+  def list
+    #redirect_to @post, notice: 'Post was successfully created.'
+    
+  end
+ 
   def show
+   #redirect_to @post, notice: 'Post was successfully created.'
   end
 
  
@@ -36,6 +47,7 @@ class PostsController < ApplicationController
     
       end
   end
+
 
 
   def update

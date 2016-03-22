@@ -1,6 +1,6 @@
 <p id="notice"><%= notice %></p>
 
-
+<h1><p>Here is a listing of requested items:</p></h1>
 
 <div id="posts" class="transitions-enabled">
   <% @posts.each do |post| %>
@@ -8,12 +8,19 @@
       <strong><%= post.description %></strong></br>
       <div class="panel-body">
       <%= post.link %>
-      <%= post.user.email if post.user %></br><p></p>
+      <p></p><p><strong>Posted by:</strong> <%= post.user.email if post.user %></br><p></p></p>
       <%= link_to "Commit to contribute", new_user_registration_path, class: "btn btn-default btn-sm" %>
        </p>
-    <%= link_to 'Show', post_path(post) %>
+    
+     <div class="actions">
+    
+    
+      <%= link_to post_path(post) do %>
+      <span class="glyphicon glyphicon-star"></span>
+      Show
+    <% end %>
       <% if post.user == current_user %>
-        <div class="actions">
+       
           <%= link_to edit_post_path(post) do %>
               <span class="glyphicon glyphicon-edit"></span>
               Edit
@@ -21,12 +28,7 @@
             <%= link_to post, method: :delete, data: { confirm: 'Are you sure?' } do %>
               <span class="glyphicon glyphicon-trash"></span>
               Delete
-            <% end %>
-
-        
-        
-        
- 
+        <% end %>
       <% end %>
         </div>
       </div>
