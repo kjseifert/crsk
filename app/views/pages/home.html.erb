@@ -26,14 +26,5 @@
               <%= submit_tag("Go") %>
             <% end %>
             
-    <% @posts.each do |post| %>
-        <div class="box panel panel-default">
-          <strong><%= post.description %></strong></br>
-          <div class="panel-body">
-          <%= post.link %>
-          <p></p><p><strong>Posted by:</strong> <%= post.user.email if post.user %></br><p></p></p>
-    <% end %>  
-      
-            
             
 </div>
